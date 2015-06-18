@@ -16,8 +16,10 @@ class ViewController: UIViewController {
         
         //NSLog("%d", weatherJSONRequester.getSunData()!.sunrise)
         //weatherJSONRequester.getTodaysConditions()
+        //weatherJSONRequester.getHourlyConditions()
+        //weatherJSONRequester.getCurrentTemp()
         
-        weatherJSONRequester.getHourlyConditions()
+        self.view.backgroundColor = raincoatYellow
     }
 
     override func didReceiveMemoryWarning() {

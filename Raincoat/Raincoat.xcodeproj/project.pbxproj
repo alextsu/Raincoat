@@ -17,6 +17,7 @@
 		20CCAC911B328FE200490B69 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC901B328FE200490B69 /* Sun.swift */; };
 		20CCAC931B3298F000490B69 /* TodaysConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC921B3298F000490B69 /* TodaysConditions.swift */; };
 		20CCAC951B32A64B00490B69 /* HourlyCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC941B32A64B00490B69 /* HourlyCondition.swift */; };
+		20CCAC971B32B96A00490B69 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC961B32B96A00490B69 /* ColorPalette.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		20CCAC901B328FE200490B69 /* Sun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
 		20CCAC921B3298F000490B69 /* TodaysConditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodaysConditions.swift; sourceTree = "<group>"; };
 		20CCAC941B32A64B00490B69 /* HourlyCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyCondition.swift; sourceTree = "<group>"; };
+		20CCAC961B32B96A00490B69 /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				20CCAC8A1B328C8400490B69 /* WeatherJSONRequester.swift */,
+				20CCAC961B32B96A00490B69 /* ColorPalette.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20CCAC971B32B96A00490B69 /* ColorPalette.swift in Sources */,
 				20CCAC6D1B3288F900490B69 /* ViewController.swift in Sources */,
 				20CCAC6B1B3288F900490B69 /* AppDelegate.swift in Sources */,
 				20CCAC911B328FE200490B69 /* Sun.swift in Sources */,
@@ -457,6 +461,7 @@
 				20CCAC861B3288FA00490B69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		20CCAC871B3288FA00490B69 /* Build configuration list for PBXNativeTarget "RaincoatTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +470,7 @@
 				20CCAC891B3288FA00490B69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

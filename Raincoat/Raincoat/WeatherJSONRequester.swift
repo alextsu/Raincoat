@@ -14,6 +14,24 @@ let wundergroundAPIKey = "c67345f20e4bd1a5";
 
 public class WeatherJSONRequester: NSObject {
     
+    func getCurrentTemp () -> Int? {
+        var endpoint = NSURL(string: "http://api.wunderground.com/api/\(wundergroundAPIKey)/conditions/q/CA/San_Francisco.json")
+        var data = NSData(contentsOfURL: endpoint!)
+        
+        if let json: NSDictionary = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSDictionary {
+        
+            if let currentObservation = json["current_observation"] as? NSDictionary {
+                
+                let temp = (currentObservation["temp_f"] as! Int)
+   
+                return temp
+            }
+            
+        }
+        
+        return nil
+    }
+    
     func getHourlyConditions () -> [HourlyCondition]? {
         var endpoint = NSURL(string: "http://api.wunderground.com/api/\(wundergroundAPIKey)/hourly/q/CA/San_Francisco.json")
         var data = NSData(contentsOfURL: endpoint!)
@@ -37,12 +55,6 @@ public class WeatherJSONRequester: NSObject {
                 }
             }
             
-        }
-        
-        
-        for hc in output {
-            NSLog("Temp %d", hc.temp)
-            NSLog("Pop %d", hc.pop)
         }
         
         return output
