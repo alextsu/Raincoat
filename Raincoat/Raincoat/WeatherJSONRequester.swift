@@ -21,8 +21,6 @@ public class WeatherJSONRequester: NSObject {
         var city : String!
         var state : String!
         
-        NSLog("test")
-        
         if let city = defaults.stringForKey("city") {
             
             var nCity = city.stringByReplacingOccurrencesOfString(" ", withString: "_", options: NSStringCompareOptions.LiteralSearch, range: nil)
@@ -43,6 +41,8 @@ public class WeatherJSONRequester: NSObject {
                 
                 let temp = (currentObservation["temp_f"] as! Int)
    
+                NSLog("Temp is %d", temp)
+                
                 return temp
             }
             
@@ -52,7 +52,25 @@ public class WeatherJSONRequester: NSObject {
     }
     
     func getHourlyConditions () -> [HourlyCondition]? {
-        var endpoint = NSURL(string: "http://api.wunderground.com/api/\(wundergroundAPIKey)/hourly/q/CA/San_Francisco.json")
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        var endpoint : NSURL!
+        var city : String!
+        var state : String!
+        
+        if let city = defaults.stringForKey("city") {
+            
+            var nCity = city.stringByReplacingOccurrencesOfString(" ", withString: "_", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            NSLog("City is %@", nCity)
+            
+            if let state = defaults.stringForKey("state") {
+                endpoint = NSURL(string: "http://api.wunderground.com/api/\(wundergroundAPIKey)/hourly/q/\(state)/\(nCity).json")
+            }
+        }
+
+        
         var data = NSData(contentsOfURL: endpoint!)
         
         var output = [HourlyCondition]()
@@ -83,8 +101,24 @@ public class WeatherJSONRequester: NSObject {
     }
     
     func getTodaysConditions () -> TodaysConditions? {
-        var endpoint = NSURL(string: "http://api.wunderground.com/api/\(wundergroundAPIKey)/forecast/q/CA/San_Francisco.json")
-        var data = NSData(contentsOfURL: endpoint!)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        var endpoint : NSURL!
+        var city : String!
+        var state : String!
+        
+        if let city = defaults.stringForKey("city") {
+            
+            var nCity = city.stringByReplacingOccurrencesOfString(" ", withString: "_", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            NSLog("City is %@", nCity)
+            
+            if let state = defaults.stringForKey("state") {
+                endpoint = NSURL(string: "http://api.wunderground.com/api/\(wundergroundAPIKey)/forecast/q/\(state)/\(nCity).json")
+            }
+        }
+
+      var data = NSData(contentsOfURL: endpoint!)
         
         if let json: NSDictionary = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSDictionary {
             
