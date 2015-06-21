@@ -18,6 +18,15 @@
 		20CCAC931B3298F000490B69 /* TodaysConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC921B3298F000490B69 /* TodaysConditions.swift */; };
 		20CCAC951B32A64B00490B69 /* HourlyCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC941B32A64B00490B69 /* HourlyCondition.swift */; };
 		20CCAC971B32B96A00490B69 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC961B32B96A00490B69 /* ColorPalette.swift */; };
+		20CCAC9E1B35620800490B69 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CCAC9D1B35620800490B69 /* settings@2x.png */; };
+		20CCACA01B35626300490B69 /* restart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CCAC9F1B35626300490B69 /* restart@2x.png */; };
+		20CCACA11B35663500490B69 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20CCAC9B1B35611300490B69 /* OpenSans-Light.ttf */; };
+		20CCACA21B35663500490B69 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20CCAC9A1B35610400490B69 /* OpenSans-Bold.ttf */; };
+		20CCACA31B35663500490B69 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20CCAC9C1B35612500490B69 /* OpenSans-Regular.ttf */; };
+		20CCACA61B3568E900490B69 /* sunback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CCACA41B3568E900490B69 /* sunback@2x.png */; };
+		20CCACA71B3568E900490B69 /* sunfront@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CCACA51B3568E900490B69 /* sunfront@2x.png */; };
+		20CCACA91B35DE3E00490B69 /* downwardChevron@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CCACA81B35DE3E00490B69 /* downwardChevron@2x.png */; };
+		20CCACAB1B365F4100490B69 /* CoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCACAA1B365F4100490B69 /* CoreLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +55,15 @@
 		20CCAC921B3298F000490B69 /* TodaysConditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodaysConditions.swift; sourceTree = "<group>"; };
 		20CCAC941B32A64B00490B69 /* HourlyCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyCondition.swift; sourceTree = "<group>"; };
 		20CCAC961B32B96A00490B69 /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		20CCAC9A1B35610400490B69 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		20CCAC9B1B35611300490B69 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		20CCAC9C1B35612500490B69 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		20CCAC9D1B35620800490B69 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		20CCAC9F1B35626300490B69 /* restart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "restart@2x.png"; sourceTree = "<group>"; };
+		20CCACA41B3568E900490B69 /* sunback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sunback@2x.png"; sourceTree = "<group>"; };
+		20CCACA51B3568E900490B69 /* sunfront@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sunfront@2x.png"; sourceTree = "<group>"; };
+		20CCACA81B35DE3E00490B69 /* downwardChevron@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downwardChevron@2x.png"; sourceTree = "<group>"; };
+		20CCACAA1B365F4100490B69 /* CoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +120,14 @@
 		20CCAC681B3288F900490B69 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				20CCACA81B35DE3E00490B69 /* downwardChevron@2x.png */,
+				20CCACA41B3568E900490B69 /* sunback@2x.png */,
+				20CCACA51B3568E900490B69 /* sunfront@2x.png */,
+				20CCAC9F1B35626300490B69 /* restart@2x.png */,
+				20CCAC9D1B35620800490B69 /* settings@2x.png */,
+				20CCAC9B1B35611300490B69 /* OpenSans-Light.ttf */,
+				20CCAC9A1B35610400490B69 /* OpenSans-Bold.ttf */,
+				20CCAC9C1B35612500490B69 /* OpenSans-Regular.ttf */,
 				20CCAC691B3288F900490B69 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -153,6 +179,7 @@
 		20CCAC8F1B328FC000490B69 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				20CCACAA1B365F4100490B69 /* CoreLocation.swift */,
 				20CCAC8A1B328C8400490B69 /* WeatherJSONRequester.swift */,
 				20CCAC961B32B96A00490B69 /* ColorPalette.swift */,
 			);
@@ -239,9 +266,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20CCACA11B35663500490B69 /* OpenSans-Light.ttf in Resources */,
+				20CCACA21B35663500490B69 /* OpenSans-Bold.ttf in Resources */,
+				20CCACA31B35663500490B69 /* OpenSans-Regular.ttf in Resources */,
 				20CCAC701B3288F900490B69 /* Main.storyboard in Resources */,
+				20CCAC9E1B35620800490B69 /* settings@2x.png in Resources */,
 				20CCAC751B3288F900490B69 /* LaunchScreen.xib in Resources */,
+				20CCACA01B35626300490B69 /* restart@2x.png in Resources */,
+				20CCACA61B3568E900490B69 /* sunback@2x.png in Resources */,
 				20CCAC721B3288F900490B69 /* Images.xcassets in Resources */,
+				20CCACA71B3568E900490B69 /* sunfront@2x.png in Resources */,
+				20CCACA91B35DE3E00490B69 /* downwardChevron@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +301,7 @@
 				20CCAC8B1B328C8400490B69 /* WeatherJSONRequester.swift in Sources */,
 				20CCAC951B32A64B00490B69 /* HourlyCondition.swift in Sources */,
 				20CCAC931B3298F000490B69 /* TodaysConditions.swift in Sources */,
+				20CCACAB1B365F4100490B69 /* CoreLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

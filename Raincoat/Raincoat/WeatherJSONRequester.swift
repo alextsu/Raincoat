@@ -15,7 +15,26 @@ let wundergroundAPIKey = "c67345f20e4bd1a5";
 public class WeatherJSONRequester: NSObject {
     
     func getCurrentTemp () -> Int? {
-        var endpoint = NSURL(string: "http://api.wunderground.com/api/\(wundergroundAPIKey)/conditions/q/CA/San_Francisco.json")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        var endpoint : NSURL!
+        var city : String!
+        var state : String!
+        
+        NSLog("test")
+        
+        if let city = defaults.stringForKey("city") {
+            
+            var nCity = city.stringByReplacingOccurrencesOfString(" ", withString: "_", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            NSLog("City is %@", nCity)
+            
+            if let state = defaults.stringForKey("state") {
+                endpoint = NSURL(string: "http://api.wunderground.com/api/\(wundergroundAPIKey)/conditions/q/\(state)/\(nCity).json")
+            }
+        }
+        
+        
         var data = NSData(contentsOfURL: endpoint!)
         
         if let json: NSDictionary = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSDictionary {
@@ -47,9 +66,12 @@ public class WeatherJSONRequester: NSObject {
                     let tempEnglish = (temp["english"] as! String).toInt()
                     let pop = (hourlyForecast[i]["pop"] as! String).toInt()
                     
-                    //NSLog("temp %d", (temp["english"] as! String).toInt()!)
+                    let fctime = hourlyForecast[i]["FCTTIME"] as! NSDictionary
+                    let hour = (fctime["hour"] as! String).toInt()
                     
-                    let hourlyCondition = HourlyCondition(temp: tempEnglish!, pop: pop!)
+                    NSLog("hour %d", hour!)
+                    
+                    let hourlyCondition = HourlyCondition(temp: tempEnglish!, pop: pop!, hour: hour!)
                     
                     output.append(hourlyCondition)
                 }

@@ -11,9 +11,11 @@ import UIKit
 class HourlyCondition: NSObject {
     var temp : Int
     var pop : Int
+    var hour : Int
     
-    init (temp : Int, pop : Int) {
+    init (temp : Int, pop : Int, hour : Int) {
         self.temp = temp
         self.pop = pop
+        self.hour = hour
     }
 }

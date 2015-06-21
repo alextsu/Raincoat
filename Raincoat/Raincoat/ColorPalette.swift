@@ -9,5 +9,5 @@
 import Foundation
 import UIKit
 
-let raincoatNavy = UIColor(red: 14/255, green: 42/255, blue: 101/255, alpha: 1)
+let raincoatNavy = UIColor(red: 30/255, green: 45/255, blue: 76/255, alpha: 1)
 let raincoatYellow = UIColor(red: 255/255, green: 205/255, blue: 30/255, alpha: 1)
