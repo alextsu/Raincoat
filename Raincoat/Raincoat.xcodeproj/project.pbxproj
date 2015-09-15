@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		202FECD51BA7B49C0017B40B /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 202FECD41BA7B49C0017B40B /* delete@2x.png */; };
 		20CCAC6B1B3288F900490B69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC6A1B3288F900490B69 /* AppDelegate.swift */; };
 		20CCAC6D1B3288F900490B69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC6C1B3288F900490B69 /* ViewController.swift */; };
 		20CCAC701B3288F900490B69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20CCAC6E1B3288F900490B69 /* Main.storyboard */; };
@@ -27,6 +28,8 @@
 		20CCACA71B3568E900490B69 /* sunfront@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CCACA51B3568E900490B69 /* sunfront@2x.png */; };
 		20CCACA91B35DE3E00490B69 /* downwardChevron@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CCACA81B35DE3E00490B69 /* downwardChevron@2x.png */; };
 		20CCACAB1B365F4100490B69 /* CoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCACAA1B365F4100490B69 /* CoreLocation.swift */; };
+		20CCACAD1B3693A800490B69 /* cloudFront@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CCACAC1B3693A800490B69 /* cloudFront@2x.png */; };
+		20CCACAF1B3693BA00490B69 /* cloudBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CCACAE1B3693BA00490B69 /* cloudBack@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		202FECD41BA7B49C0017B40B /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
 		20CCAC651B3288F900490B69 /* Raincoat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Raincoat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CCAC691B3288F900490B69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CCAC6A1B3288F900490B69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 		20CCACA51B3568E900490B69 /* sunfront@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sunfront@2x.png"; sourceTree = "<group>"; };
 		20CCACA81B35DE3E00490B69 /* downwardChevron@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downwardChevron@2x.png"; sourceTree = "<group>"; };
 		20CCACAA1B365F4100490B69 /* CoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocation.swift; sourceTree = "<group>"; };
+		20CCACAC1B3693A800490B69 /* cloudFront@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloudFront@2x.png"; sourceTree = "<group>"; };
+		20CCACAE1B3693BA00490B69 /* cloudBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloudBack@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,9 @@
 		20CCAC681B3288F900490B69 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				202FECD41BA7B49C0017B40B /* delete@2x.png */,
+				20CCACAE1B3693BA00490B69 /* cloudBack@2x.png */,
+				20CCACAC1B3693A800490B69 /* cloudFront@2x.png */,
 				20CCACA81B35DE3E00490B69 /* downwardChevron@2x.png */,
 				20CCACA41B3568E900490B69 /* sunback@2x.png */,
 				20CCACA51B3568E900490B69 /* sunfront@2x.png */,
@@ -268,9 +277,12 @@
 			files = (
 				20CCACA11B35663500490B69 /* OpenSans-Light.ttf in Resources */,
 				20CCACA21B35663500490B69 /* OpenSans-Bold.ttf in Resources */,
+				20CCACAD1B3693A800490B69 /* cloudFront@2x.png in Resources */,
 				20CCACA31B35663500490B69 /* OpenSans-Regular.ttf in Resources */,
 				20CCAC701B3288F900490B69 /* Main.storyboard in Resources */,
+				20CCACAF1B3693BA00490B69 /* cloudBack@2x.png in Resources */,
 				20CCAC9E1B35620800490B69 /* settings@2x.png in Resources */,
+				202FECD51BA7B49C0017B40B /* delete@2x.png in Resources */,
 				20CCAC751B3288F900490B69 /* LaunchScreen.xib in Resources */,
 				20CCACA01B35626300490B69 /* restart@2x.png in Resources */,
 				20CCACA61B3568E900490B69 /* sunback@2x.png in Resources */,

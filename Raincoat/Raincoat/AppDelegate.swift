@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject("San Francisco", forKey: "city")
+        defaults.setObject("Cupertino", forKey: "city")
         defaults.setObject("CA", forKey: "state")
         
 

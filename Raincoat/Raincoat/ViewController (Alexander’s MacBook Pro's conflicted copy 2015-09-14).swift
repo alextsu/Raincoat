@@ -9,13 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController, LoadWeatherDataDelegate {
+
+    @IBOutlet weak var shouldWearLabel: UILabel!
     
     @IBOutlet weak var sunback: UIImageView!
     @IBOutlet weak var sunfront: UIImageView!
     @IBOutlet weak var cloudFront: UIImageView!
     @IBOutlet weak var cloudBack: UIImageView!
     
-    @IBOutlet weak var shouldWearLabel: UILabel!
+    
     @IBOutlet weak var bringItLabel: UILabel!
     @IBOutlet weak var showMoreLabel: UILabel!
     @IBOutlet weak var weatherDetailsLabel: UILabel!
@@ -23,17 +25,12 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
     @IBOutlet weak var highTempLabel: UILabel!
     @IBOutlet weak var lowTempLabel: UILabel!
     
-    
-    
     var coreLocation : CoreLocation?
     var todaysConditions : TodaysConditions!
     var hourlyConditions : [HourlyCondition]?
     var currentTemp : Int = 0
     
-    //Chance of precipitation, above which the app will consider it raining
-    var popThreshold : Int = 25
-    
-    var currentWeather : String!
+    var popThreshold : Int = 19
     
     var tempBackgroundScreen : UIView!
     
@@ -109,19 +106,9 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         self.tempBackgroundScreen.alpha = 0.8
         self.view.bringSubviewToFront(tempBackgroundScreen)
         
-        self.navigationController?.navigationBar.alpha = 0.0001
-        
         let centerPoint:CGPoint = self.view.center
-        var settingsView:UIView = UIView(frame: CGRect(x: (self.view.frame.width - 260)/2 , y: -500, width: 260, height: 200))
+        var settingsView:UIView = UIView(frame: CGRect(x: 50, y: -500, width: self.view.frame.width - 100, height: self.view.frame.height - 400))
         settingsView.backgroundColor = UIColor.whiteColor()
-        
-        let cancelButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        cancelButton.setImage(UIImage(named: "delete.png"), forState: .Normal)
-        cancelButton.tintColor = raincoatNavy
-        cancelButton.frame = CGRect(x: settingsView.frame.width - 30, y: 5, width: 25, height: 25)
-        settingsView.addSubview(cancelButton)
-        
-        
         self.view.addSubview(settingsView)
         self.view.bringSubviewToFront(settingsView)
     
@@ -134,7 +121,6 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
     
     
     func sunRotateOnce() {
-        self.currentWeather = "sunny"
         UIView.animateWithDuration(11.0,
             delay: 0.0,
             options: .CurveLinear,
@@ -151,7 +137,6 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
     }
     
     func cloudMoveLeft(cloud : UIView) {
-        self.currentWeather = "rainy"
         UIView.animateWithDuration(4.0,
             delay: 0.0,
             options: nil,
@@ -200,12 +185,8 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
             self.sunfront.alpha = 0
             
             self.view.bringSubviewToFront(cloudFront)
-            
-            //check if the clouds are already moving. If not, begin animation
-            if(currentWeather != "rainy") {
-                cloudMoveLeft(cloudFront)
-                cloudMoveRight(cloudBack)
-            }
+            cloudMoveLeft(cloudFront)
+            cloudMoveRight(cloudBack)
         }
         else {
             bringItLabel.text = "Nope. We're rain-free!"
@@ -213,10 +194,8 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
             self.cloudBack.alpha = 0.0
             self.cloudFront.alpha = 0.0
             
-            //check if the sun is already moving. If not, begin animation
-            if(currentWeather != "sunny") {
-                sunRotateOnce()
-            }
+            //sun
+            sunRotateOnce()
         }
         tempBackgroundScreen.alpha = 0.0
     }

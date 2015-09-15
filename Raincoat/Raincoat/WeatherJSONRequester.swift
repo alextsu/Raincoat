@@ -87,7 +87,11 @@ public class WeatherJSONRequester: NSObject {
                     let fctime = hourlyForecast[i]["FCTTIME"] as! NSDictionary
                     let hour = (fctime["hour"] as! String).toInt()
                     
-                    NSLog("hour %d", hour!)
+                    NSLog("hour %d & pop %d", hour!, pop!)
+                    
+                    if hour == 2 {
+                        break
+                    }
                     
                     let hourlyCondition = HourlyCondition(temp: tempEnglish!, pop: pop!, hour: hour!)
                     
