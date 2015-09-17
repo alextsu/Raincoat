@@ -23,7 +23,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
     @IBOutlet weak var highTempLabel: UILabel!
     @IBOutlet weak var lowTempLabel: UILabel!
     
-    
+    var currentlyInSettingsMenu : Bool = false
     
     var coreLocation : CoreLocation?
     var todaysConditions : TodaysConditions!
@@ -32,22 +32,24 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
     
     //Chance of precipitation, above which the app will consider it raining
     var popThreshold : Int = 25
-    
     var currentWeather : String!
     
+    var settingsView:UIView!
     var tempBackgroundScreen : UIView!
+    var alarmSetting : UISegmentedControl!
+    var timePicker : UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         //NSLog("%d", weatherJSONRequester.getSunData()!.sunrise)
-
+        
         self.coreLocation = CoreLocation()
         self.coreLocation?.delegate = self
         
         hourlyConditions = [HourlyCondition]()
-
+        
         //navigation bar
         let bar:UINavigationBar! =  self.navigationController?.navigationBar
         bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
@@ -91,47 +93,109 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         tempBackgroundScreen.backgroundColor = raincoatYellow
         self.view.addSubview(tempBackgroundScreen)
         
-        loadData()
+        //loadData()
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func refresh(sender: UIBarButtonItem) {
         self.loadData()
     }
-
+    
     @IBAction func settings(sender: AnyObject) {
-        self.tempBackgroundScreen.backgroundColor = UIColor.blackColor()
-        self.tempBackgroundScreen.alpha = 0.8
+        
+        self.currentlyInSettingsMenu = true
+        
+        //set background dark
+        self.tempBackgroundScreen.backgroundColor = raincoatNavy
+        self.tempBackgroundScreen.alpha = 0.75
         self.view.bringSubviewToFront(tempBackgroundScreen)
         
+        //hide navigation bar
         self.navigationController?.navigationBar.alpha = 0.0001
         
-        let centerPoint:CGPoint = self.view.center
-        var settingsView:UIView = UIView(frame: CGRect(x: (self.view.frame.width - 260)/2 , y: -500, width: 260, height: 200))
-        settingsView.backgroundColor = UIColor.whiteColor()
+        //let centerPoint:CGPoint = self.view.center
         
+        //Create the white settings box
+        settingsView = UIView(frame: CGRect(x: (self.view.frame.width - 280)/2 , y: -500, width: 280, height: 400))
+        settingsView.backgroundColor = raincoatYellow
+        settingsView.clipsToBounds = true
+        
+        //add cancel button to white settings box
         let cancelButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         cancelButton.setImage(UIImage(named: "delete.png"), forState: .Normal)
         cancelButton.tintColor = raincoatNavy
         cancelButton.frame = CGRect(x: settingsView.frame.width - 30, y: 5, width: 25, height: 25)
+        cancelButton.addTarget(self, action: "cancelOut:", forControlEvents: UIControlEvents.TouchUpInside)
         settingsView.addSubview(cancelButton)
         
+        //add segmented control
+        let alarmSettingText = ["Alarm On", "Alarm Off"]
+        alarmSetting = UISegmentedControl(items: alarmSettingText)
+        alarmSetting.center = CGPoint(x: settingsView.frame.width / 2, y: 90)
+        alarmSetting.tintColor = raincoatNavy
+        if (NSUserDefaults.standardUserDefaults().objectForKey("AlarmSetting") == nil) {
+            alarmSetting.selectedSegmentIndex = 1
+        }
+        else {
+            alarmSetting.selectedSegmentIndex = NSUserDefaults.standardUserDefaults().integerForKey("AlarmSetting")
+        }
+        settingsView.addSubview(alarmSetting)
         
+        //add save button
+        let saveButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        saveButton.setTitle("Save", forState: .Normal)
+        saveButton.tintColor = raincoatNavy
+        saveButton.titleLabel!.font = UIFont(name: "HelveticaNeue", size: 20)
+        saveButton.frame = CGRect(x: 0, y: settingsView.frame.height - 55, width: settingsView.frame.width, height: 40)
+        saveButton.addTarget(self, action: "saveSettings:", forControlEvents: UIControlEvents.TouchUpInside)
+        settingsView.addSubview(saveButton)
+        
+        //add time picker
+        timePicker = UIDatePicker(frame: CGRect(x: -25, y: 100, width: settingsView.frame.width - 50 , height: settingsView.frame.height - 50))
+        timePicker.datePickerMode = UIDatePickerMode.Time
+        timePicker.setValue(raincoatNavy, forKeyPath: "textColor")
+        if (NSUserDefaults.standardUserDefaults().objectForKey("AlarmTime") != nil) {
+            timePicker.setDate(NSUserDefaults.standardUserDefaults().objectForKey("AlarmTime") as! NSDate, animated: true)
+        }
+        settingsView.addSubview(timePicker)
+        
+        //put the subviews together
         self.view.addSubview(settingsView)
         self.view.bringSubviewToFront(settingsView)
-    
-
-        UIView.animateWithDuration(2.0, animations: {settingsView.center.y += (550 + self.view.frame.height/4)}, completion: { finished in
+        
+        //animate
+        UIView.animateWithDuration(2.0, animations: {self.settingsView.center.y += (500 + self.view.frame.height/2 - self.settingsView.frame.height/2)}, completion: { finished in
             println("Moved!")
         })
         
     }
     
+    func cancelOut(sender:UIButton!) {
+        
+        UIView.animateWithDuration(0.7, animations: {self.settingsView.center.y -= (500 + self.view.frame.height/2 - self.settingsView.frame.height/2)}, completion: { finished in
+            println("Moved!")
+            self.tempBackgroundScreen.alpha = 0.0
+            self.navigationController?.navigationBar.alpha = 1
+        })
+    }
+    
+    func saveSettings(sender: UIButton!) {
+        NSUserDefaults.standardUserDefaults().setInteger(self.alarmSetting.selectedSegmentIndex, forKey: "AlarmSetting")
+        
+        NSUserDefaults.standardUserDefaults().setObject(timePicker.date, forKey: "AlarmTime")
+        NSLog("Time is: %@", timePicker.date.description)
+        
+        UIView.animateWithDuration(0.7, animations: {self.settingsView.center.y -= (500 + self.view.frame.height/2 - self.settingsView.frame.height/2)}, completion: { finished in
+            println("Moved!")
+            self.tempBackgroundScreen.alpha = 0.0
+            self.navigationController?.navigationBar.alpha = 1
+        })
+    }
     
     func sunRotateOnce() {
         self.currentWeather = "sunny"
@@ -141,7 +205,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
             animations: {self.sunback.transform = CGAffineTransformRotate(self.sunback.transform, 3.1415926)},
             completion: {finished in self.sunRotateAgain()})
     }
-
+    
     func sunRotateAgain() {
         UIView.animateWithDuration(11.0,
             delay: 0.0,
@@ -167,60 +231,6 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
             completion: {finished in self.cloudMoveLeft(cloud)})
     }
     
-    func loadData() {
-        
-        
-        self.currentTemp = weatherJSONRequester.getCurrentTemp()!
-        self.todaysConditions = weatherJSONRequester.getTodaysConditions()
-        self.hourlyConditions = weatherJSONRequester.getHourlyConditions()
-        
-        //Should wear label
-        var city = NSUserDefaults.standardUserDefaults().objectForKey("city") as! String
-        shouldWearLabel.text = "Should I expect rain \n in \(city) today?"
-        
-        //Set high low
-        highTempLabel.text = String(todaysConditions.high) + "\u{00B0}"
-        lowTempLabel.text = String(todaysConditions.low) + "\u{00B0}"
-        
-        //Details label
-        weatherDetailsLabel.text = "Currently " + String(self.currentTemp) + "F. " + self.todaysConditions.forecastText
-        
-        //Bring it label
-        if willRainToday(self.hourlyConditions!) == true  {
-            bringItLabel.text = "Yup. Grab a raincoat!"
-            
-            self.view.backgroundColor = raincoatNavy
-            self.navigationController?.navigationBar.tintColor = raincoatYellow
-            self.highTempLabel.textColor = raincoatYellow
-            self.lowTempLabel.textColor = raincoatYellow
-            self.weatherDetailsLabel.textColor = raincoatYellow
-            self.bringItLabel.textColor = raincoatYellow
-            
-            self.sunback.alpha = 0
-            self.sunfront.alpha = 0
-            
-            self.view.bringSubviewToFront(cloudFront)
-            
-            //check if the clouds are already moving. If not, begin animation
-            if(currentWeather != "rainy") {
-                cloudMoveLeft(cloudFront)
-                cloudMoveRight(cloudBack)
-            }
-        }
-        else {
-            bringItLabel.text = "Nope. We're rain-free!"
-            
-            self.cloudBack.alpha = 0.0
-            self.cloudFront.alpha = 0.0
-            
-            //check if the sun is already moving. If not, begin animation
-            if(currentWeather != "sunny") {
-                sunRotateOnce()
-            }
-        }
-        tempBackgroundScreen.alpha = 0.0
-    }
-    
     func willRainToday(conditions: [HourlyCondition]) -> Bool {
         for hour in conditions {
             if hour.pop > self.popThreshold {
@@ -229,6 +239,64 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         }
         
         return false
+    }
+    
+    func loadData() {
+        
+        if currentlyInSettingsMenu == false {
+            
+            self.currentTemp = weatherJSONRequester.getCurrentTemp()!
+            self.todaysConditions = weatherJSONRequester.getTodaysConditions()
+            self.hourlyConditions = weatherJSONRequester.getHourlyConditions()
+            
+            //Should wear label
+            var city = NSUserDefaults.standardUserDefaults().objectForKey("city") as! String
+            shouldWearLabel.text = "Will it rain in\n\(city) today?"
+            
+            //Set high low
+            highTempLabel.text = String(todaysConditions.high) + "\u{00B0}"
+            lowTempLabel.text = String(todaysConditions.low) + "\u{00B0}"
+            
+            //Details label
+            weatherDetailsLabel.text = "Currently " + String(self.currentTemp) + "F. " + self.todaysConditions.forecastText
+            
+            //Bring it label
+            if willRainToday(self.hourlyConditions!) == true  {
+                bringItLabel.text = "Yup. Grab a raincoat!"
+                
+                self.view.backgroundColor = raincoatNavy
+                self.navigationController?.navigationBar.tintColor = raincoatYellow
+                self.highTempLabel.textColor = raincoatYellow
+                self.lowTempLabel.textColor = raincoatYellow
+                self.weatherDetailsLabel.textColor = raincoatYellow
+                self.bringItLabel.textColor = raincoatYellow
+                
+                self.sunback.alpha = 0
+                self.sunfront.alpha = 0
+                
+                self.view.bringSubviewToFront(cloudFront)
+                
+                //check if the clouds are already moving. If not, begin animation
+                if(currentWeather != "rainy") {
+                    cloudMoveLeft(cloudFront)
+                    cloudMoveRight(cloudBack)
+                }
+            }
+            else {
+                bringItLabel.text = "Nope. We're rain-free!"
+                
+                self.cloudBack.alpha = 0.0
+                self.cloudFront.alpha = 0.0
+                
+                //check if the sun is already moving. If not, begin animation
+                if(currentWeather != "sunny") {
+                    sunRotateOnce()
+                }
+            }
+            tempBackgroundScreen.alpha = 0.0
+        }
+        
+        
     }
 }
 
