@@ -111,8 +111,9 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         self.currentlyInSettingsMenu = true
         
         //set background dark
+        
         self.tempBackgroundScreen.backgroundColor = raincoatNavy
-        self.tempBackgroundScreen.alpha = 0.75
+        UIView.animateWithDuration(1, animations: {self.tempBackgroundScreen.alpha = 0.75}, completion: { finished in })
         self.view.bringSubviewToFront(tempBackgroundScreen)
         
         //hide navigation bar
@@ -124,6 +125,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         settingsView = UIView(frame: CGRect(x: (self.view.frame.width - 280)/2 , y: -500, width: 280, height: 400))
         settingsView.backgroundColor = raincoatYellow
         settingsView.clipsToBounds = true
+        settingsView.alpha = 0.1
         
         //add cancel button to white settings box
         let cancelButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
@@ -169,7 +171,10 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         self.view.bringSubviewToFront(settingsView)
         
         //animate
-        UIView.animateWithDuration(2.0, animations: {self.settingsView.center.y += (500 + self.view.frame.height/2 - self.settingsView.frame.height/2)}, completion: { finished in
+        UIView.animateWithDuration(1.5, animations: {
+            self.settingsView.center.y += (500 + self.view.frame.height/2 - self.settingsView.frame.height/2)
+            self.settingsView.alpha = 1.0
+        }, completion: { finished in
             println("Moved!")
         })
         
@@ -177,9 +182,12 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
     
     func cancelOut(sender:UIButton!) {
         
-        UIView.animateWithDuration(0.7, animations: {self.settingsView.center.y -= (500 + self.view.frame.height/2 - self.settingsView.frame.height/2)}, completion: { finished in
+        UIView.animateWithDuration(0.7, animations: {
+            self.settingsView.center.y -= (500 + self.view.frame.height/2 - self.settingsView.frame.height/2)
+            self.settingsView.alpha = 0.0
+        }, completion: { finished in
             println("Moved!")
-            self.tempBackgroundScreen.alpha = 0.0
+            UIView.animateWithDuration(1, animations: {self.tempBackgroundScreen.alpha = 0.0}, completion: { finished in })
             self.navigationController?.navigationBar.alpha = 1
         })
     }
@@ -190,9 +198,12 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         NSUserDefaults.standardUserDefaults().setObject(timePicker.date, forKey: "AlarmTime")
         NSLog("Time is: %@", timePicker.date.description)
         
-        UIView.animateWithDuration(0.7, animations: {self.settingsView.center.y -= (500 + self.view.frame.height/2 - self.settingsView.frame.height/2)}, completion: { finished in
+        UIView.animateWithDuration(0.7, animations: {
+            self.settingsView.center.y -= (500 + self.view.frame.height/2 - self.settingsView.frame.height/2)
+            self.settingsView.alpha = 0.0
+        }, completion: { finished in
             println("Moved!")
-            self.tempBackgroundScreen.alpha = 0.0
+            UIView.animateWithDuration(1, animations: {self.tempBackgroundScreen.alpha = 0.0}, completion: { finished in })
             self.navigationController?.navigationBar.alpha = 1
         })
     }
@@ -293,7 +304,8 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
                     sunRotateOnce()
                 }
             }
-            tempBackgroundScreen.alpha = 0.0
+
+            UIView.animateWithDuration(0.7, animations: {self.tempBackgroundScreen.alpha = 0.0}, completion: { finished in })
         }
         
         
