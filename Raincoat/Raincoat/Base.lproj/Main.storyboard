@@ -50,14 +50,14 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="show more" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcD-cZ-frG">
-                                <rect key="frame" x="145" y="614" width="85" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="show more" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcD-cZ-frG">
+                                <rect key="frame" x="145" y="646" width="85" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Currently 60F. Areas of fog early, becoming sunny in the afternoon. High 64F. Winds WSW at 15 to 25 mph." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmY-sB-sIh">
-                                <rect key="frame" x="78" y="525" width="219" height="67"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently 60F. Areas of fog early, becoming sunny in the afternoon. High 64F. Winds WSW at 15 to 25 mph." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmY-sB-sIh">
+                                <rect key="frame" x="78" y="557" width="219" height="67"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="NcM-Gd-beF"/>
                                 </constraints>
@@ -70,8 +70,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VIl-aS-fBY">
-                                <rect key="frame" x="133" y="489" width="109" height="31"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIl-aS-fBY">
+                                <rect key="frame" x="133" y="521" width="109" height="31"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzI-3E-M1n">
                                         <rect key="frame" x="51" y="5" width="6" height="21"/>
@@ -121,8 +121,8 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="today's forecast" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teN-dC-VLt">
-                                <rect key="frame" x="126" y="462" width="124" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today's forecast" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teN-dC-VLt">
+                                <rect key="frame" x="126" y="494" width="124" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -130,8 +130,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudFront.png" translatesAutoresizingMaskIntoConstraints="NO" id="eSl-Wb-2se">
                                 <rect key="frame" x="142" y="170" width="187" height="128"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="cloudBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="tDo-s7-xIK">
-                                <rect key="frame" x="53" y="144" width="208" height="111"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="tDo-s7-xIK">
+                                <rect key="frame" x="53" y="144" width="203" height="111"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="raincoatlogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="6f0-oz-W8h">
+                                <rect key="frame" x="64" y="273" width="247" height="121"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="247" id="deb-Hu-LEP"/>
+                                    <constraint firstAttribute="height" constant="121" id="zgw-wK-Aqt"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -145,6 +152,7 @@
                             <constraint firstItem="eSN-eA-WsX" firstAttribute="top" secondItem="D6J-cb-Gmm" secondAttribute="bottom" constant="14" id="Foo-kU-TWn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eSN-eA-WsX" secondAttribute="trailing" constant="65" id="G4v-Uh-6cg"/>
                             <constraint firstItem="eSN-eA-WsX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="65" id="GaT-ZO-VuM"/>
+                            <constraint firstAttribute="centerX" secondItem="6f0-oz-W8h" secondAttribute="centerX" id="SSd-jr-Fmg"/>
                             <constraint firstItem="3JB-O4-BjN" firstAttribute="top" secondItem="D6J-cb-Gmm" secondAttribute="bottom" constant="14" id="Ut2-QZ-TJb"/>
                             <constraint firstItem="VIl-aS-fBY" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="80" id="Ynq-dO-DqY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VIl-aS-fBY" secondAttribute="trailing" constant="79" id="cPD-zA-cph"/>
@@ -164,6 +172,7 @@
                             <constraint firstItem="pyy-Ns-lYZ" firstAttribute="top" secondItem="3JB-O4-BjN" secondAttribute="bottom" constant="4" id="vmQ-iD-zxN"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="rcD-cZ-frG" secondAttribute="bottom" id="wpf-Ri-eHS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pyy-Ns-lYZ" secondAttribute="trailing" constant="-16" id="xNo-ks-ujI"/>
+                            <constraint firstAttribute="centerY" secondItem="6f0-oz-W8h" secondAttribute="centerY" id="xj5-Ac-O4e"/>
                             <constraint firstItem="pyy-Ns-lYZ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="y0N-ge-5FC"/>
                             <constraint firstItem="YmY-sB-sIh" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="62" id="z0m-l2-im2"/>
                         </constraints>
@@ -193,6 +202,7 @@
                         <outlet property="cloudFront" destination="eSl-Wb-2se" id="ry4-qK-GWS"/>
                         <outlet property="highTempLabel" destination="R50-mS-ndJ" id="ymm-UI-hXS"/>
                         <outlet property="lowTempLabel" destination="rrc-8K-Kww" id="pZA-f8-cFI"/>
+                        <outlet property="raincoatLogo" destination="6f0-oz-W8h" id="yNK-dt-Xsw"/>
                         <outlet property="shouldWearLabel" destination="D6J-cb-Gmm" id="67a-S4-HfY"/>
                         <outlet property="showMoreLabel" destination="rcD-cZ-frG" id="mCp-XX-mvv"/>
                         <outlet property="sunback" destination="eSN-eA-WsX" id="4pe-2q-fG3"/>
@@ -228,6 +238,7 @@
     <resources>
         <image name="cloudBack.png" width="203" height="112"/>
         <image name="cloudFront.png" width="187" height="125"/>
+        <image name="raincoatlogo.png" width="457" height="179"/>
         <image name="restart.png" width="25" height="25"/>
         <image name="settings.png" width="25" height="25"/>
         <image name="sunback.png" width="500" height="500"/>

@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         defaults.setObject("Cupertino", forKey: "city")
         defaults.setObject("CA", forKey: "state")
         
+        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
 
         return true
     }
@@ -49,6 +50,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    // Support for background fetch
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+        NSLog("\nBackground")
+        
+        var hourly : [HourlyCondition] = weatherJSONRequester.getHourlyConditions()!
+        var willRain : Bool
+        
+        willRain = false
+        for hour in hourly {
+            if hour.pop > 25 {
+                willRain = true
+            }
+        }
+        
+        NSLog("Background: Will it rain? %@", willRain.description)
+        
 
+    }
 }
 

@@ -14,6 +14,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
     @IBOutlet weak var sunfront: UIImageView!
     @IBOutlet weak var cloudFront: UIImageView!
     @IBOutlet weak var cloudBack: UIImageView!
+    @IBOutlet weak var raincoatLogo: UIImageView!
     
     @IBOutlet weak var shouldWearLabel: UILabel!
     @IBOutlet weak var bringItLabel: UILabel!
@@ -94,6 +95,10 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         self.view.addSubview(tempBackgroundScreen)
         
         //loadData()
+        self.navigationItem.rightBarButtonItem!.enabled = false
+        self.view.bringSubviewToFront(raincoatLogo)
+        self.navigationItem.rightBarButtonItem?.tintColor = raincoatYellow
+        self.navigationItem.leftBarButtonItem?.tintColor = raincoatYellow
     }
     
     
@@ -113,7 +118,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         //set background dark
         
         self.tempBackgroundScreen.backgroundColor = raincoatNavy
-        UIView.animateWithDuration(1, animations: {self.tempBackgroundScreen.alpha = 0.75}, completion: { finished in })
+        UIView.animateWithDuration(1, animations: {self.tempBackgroundScreen.alpha = 0.95}, completion: { finished in })
         self.view.bringSubviewToFront(tempBackgroundScreen)
         
         //hide navigation bar
@@ -123,14 +128,14 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         
         //Create the white settings box
         settingsView = UIView(frame: CGRect(x: (self.view.frame.width - 280)/2 , y: -500, width: 280, height: 400))
-        settingsView.backgroundColor = raincoatYellow
+        settingsView.backgroundColor = UIColor.clearColor()
         settingsView.clipsToBounds = true
         settingsView.alpha = 0.1
         
         //add cancel button to white settings box
         let cancelButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         cancelButton.setImage(UIImage(named: "delete.png"), forState: .Normal)
-        cancelButton.tintColor = raincoatNavy
+        cancelButton.tintColor = UIColor.whiteColor()
         cancelButton.frame = CGRect(x: settingsView.frame.width - 30, y: 5, width: 25, height: 25)
         cancelButton.addTarget(self, action: "cancelOut:", forControlEvents: UIControlEvents.TouchUpInside)
         settingsView.addSubview(cancelButton)
@@ -139,7 +144,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         let alarmSettingText = ["Alarm On", "Alarm Off"]
         alarmSetting = UISegmentedControl(items: alarmSettingText)
         alarmSetting.center = CGPoint(x: settingsView.frame.width / 2, y: 90)
-        alarmSetting.tintColor = raincoatNavy
+        alarmSetting.tintColor = UIColor.whiteColor()
         if (NSUserDefaults.standardUserDefaults().objectForKey("AlarmSetting") == nil) {
             alarmSetting.selectedSegmentIndex = 1
         }
@@ -151,16 +156,19 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         //add save button
         let saveButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         saveButton.setTitle("Save", forState: .Normal)
-        saveButton.tintColor = raincoatNavy
-        saveButton.titleLabel!.font = UIFont(name: "HelveticaNeue", size: 20)
-        saveButton.frame = CGRect(x: 0, y: settingsView.frame.height - 55, width: settingsView.frame.width, height: 40)
+        saveButton.tintColor = UIColor.whiteColor()
+        saveButton.titleLabel!.font = UIFont(name: "HelveticaNeue", size: 22)
+        saveButton.frame = CGRect(x: 0, y: settingsView.frame.height - 82, width: settingsView.frame.width, height: 30)
+        //saveButton.backgroundColor = UIColor.whiteColor()
         saveButton.addTarget(self, action: "saveSettings:", forControlEvents: UIControlEvents.TouchUpInside)
         settingsView.addSubview(saveButton)
         
         //add time picker
-        timePicker = UIDatePicker(frame: CGRect(x: -25, y: 100, width: settingsView.frame.width - 50 , height: settingsView.frame.height - 50))
+        timePicker = UIDatePicker(frame: CGRect(x:0, y: 100, width: settingsView.frame.width, height: settingsView.frame.height - 50))
+        timePicker.center.x = settingsView.frame.width/2
         timePicker.datePickerMode = UIDatePickerMode.Time
-        timePicker.setValue(raincoatNavy, forKeyPath: "textColor")
+        timePicker.setValue(UIColor.whiteColor(), forKeyPath: "textColor")
+        timePicker.locale = NSLocale(localeIdentifier: "en_GB")
         if (NSUserDefaults.standardUserDefaults().objectForKey("AlarmTime") != nil) {
             timePicker.setDate(NSUserDefaults.standardUserDefaults().objectForKey("AlarmTime") as! NSDate, animated: true)
         }
@@ -227,7 +235,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
     
     func cloudMoveLeft(cloud : UIView) {
         self.currentWeather = "rainy"
-        UIView.animateWithDuration(4.0,
+        UIView.animateWithDuration(5.0,
             delay: 0.0,
             options: nil,
             animations: {cloud.center.x += 11},
@@ -235,7 +243,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
     }
     
     func cloudMoveRight(cloud: UIView) {
-        UIView.animateWithDuration(4.0,
+        UIView.animateWithDuration(5.0,
             delay: 0.0,
             options: nil,
             animations: {cloud.center.x -=  11},
@@ -286,6 +294,8 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
                 self.sunfront.alpha = 0
                 
                 self.view.bringSubviewToFront(cloudFront)
+                self.view.bringSubviewToFront(tempBackgroundScreen)
+                self.view.bringSubviewToFront(raincoatLogo)
                 
                 //check if the clouds are already moving. If not, begin animation
                 if(currentWeather != "rainy") {
@@ -299,13 +309,25 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
                 self.cloudBack.alpha = 0.0
                 self.cloudFront.alpha = 0.0
                 
+                self.navigationItem.rightBarButtonItem?.tintColor = raincoatNavy
+                self.navigationItem.leftBarButtonItem?.tintColor = raincoatNavy
+                
                 //check if the sun is already moving. If not, begin animation
                 if(currentWeather != "sunny") {
                     sunRotateOnce()
                 }
             }
 
-            UIView.animateWithDuration(0.7, animations: {self.tempBackgroundScreen.alpha = 0.0}, completion: { finished in })
+            
+            self.navigationItem.rightBarButtonItem!.enabled = true
+            UIView.animateWithDuration(0.9, animations: {
+                self.raincoatLogo.alpha = 0.0
+            }, completion: { finished in
+                UIView.animateWithDuration(0.9, animations: {
+                    self.tempBackgroundScreen.alpha = 0.0
+
+                    }, completion: { finished in })
+            })
         }
         
         
