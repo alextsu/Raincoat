@@ -99,6 +99,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         self.view.bringSubviewToFront(raincoatLogo)
         self.navigationItem.rightBarButtonItem?.tintColor = raincoatYellow
         self.navigationItem.leftBarButtonItem?.tintColor = raincoatYellow
+        
     }
     
     
@@ -143,7 +144,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         //add segmented control
         let alarmSettingText = ["Alarm On", "Alarm Off"]
         alarmSetting = UISegmentedControl(items: alarmSettingText)
-        alarmSetting.center = CGPoint(x: settingsView.frame.width / 2, y: 90)
+        alarmSetting.center = CGPoint(x: settingsView.frame.width / 2, y: 80)
         alarmSetting.tintColor = UIColor.whiteColor()
         if (NSUserDefaults.standardUserDefaults().objectForKey("AlarmSetting") == nil) {
             alarmSetting.selectedSegmentIndex = 1
@@ -158,7 +159,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         saveButton.setTitle("Save", forState: .Normal)
         saveButton.tintColor = UIColor.whiteColor()
         saveButton.titleLabel!.font = UIFont(name: "HelveticaNeue", size: 22)
-        saveButton.frame = CGRect(x: 0, y: settingsView.frame.height - 82, width: settingsView.frame.width, height: 30)
+        saveButton.frame = CGRect(x: 0, y: settingsView.frame.height - 72, width: settingsView.frame.width, height: 30)
         //saveButton.backgroundColor = UIColor.whiteColor()
         saveButton.addTarget(self, action: "saveSettings:", forControlEvents: UIControlEvents.TouchUpInside)
         settingsView.addSubview(saveButton)
@@ -204,7 +205,10 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         NSUserDefaults.standardUserDefaults().setInteger(self.alarmSetting.selectedSegmentIndex, forKey: "AlarmSetting")
         
         NSUserDefaults.standardUserDefaults().setObject(timePicker.date, forKey: "AlarmTime")
-        NSLog("Time is: %@", timePicker.date.description)
+        //NSLog("Time is: %@", timePicker.date.description)
+        
+        self.triggerAlarm(timePicker.date, alarmSetting: self.alarmSetting.selectedSegmentIndex)
+        
         
         UIView.animateWithDuration(0.7, animations: {
             self.settingsView.center.y -= (500 + self.view.frame.height/2 - self.settingsView.frame.height/2)
@@ -214,7 +218,55 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
             UIView.animateWithDuration(1, animations: {self.tempBackgroundScreen.alpha = 0.0}, completion: { finished in })
             self.navigationController?.navigationBar.alpha = 1
         })
+        
+        
     }
+    
+    func triggerAlarm(alarmTime: NSDate, alarmSetting: Int) {
+        var notificationText : String!
+        var city : String = NSUserDefaults.standardUserDefaults().objectForKey("city") as! String
+        
+        NSLog("Alarm Time: %@, Alarm Setting: %d", alarmTime.description, alarmSetting)
+        
+        if (alarmSetting == 0) {
+            
+            let calendar = NSCalendar.currentCalendar()
+            let comp = calendar.components((.CalendarUnitHour | .CalendarUnitMinute), fromDate: alarmTime)
+            let hour = comp.hour
+            let minute = comp.minute
+            
+            var currentDate = NSDate()
+            NSLog("Current Date %@", currentDate.description)
+            NSLog("Alarm hour: %d, Alarm minute: %d", hour, minute)
+            
+            let cal: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+            var newDate: NSDate = cal.dateBySettingHour(hour, minute: minute, second: 0, ofDate: currentDate, options: NSCalendarOptions())!
+            
+            if(currentDate.compare(newDate) == NSComparisonResult.OrderedDescending) {
+                newDate = newDate.dateByAddingTimeInterval(60*60*24)
+            }
+            
+            NSLog("New Alarm Date: %@", newDate.description)
+            
+            
+            if(willRainToday(self.hourlyConditions!) == true) {
+                notificationText = "Yes. It's going to rain today in " + city + "."
+            }
+            else {
+                notificationText = "Nope. No rain today in " + city + "."
+            }
+            
+            var notification = UILocalNotification()
+            notification.alertBody = notificationText
+            notification.alertAction = "open"
+            notification.fireDate = newDate
+            notification.soundName = UILocalNotificationDefaultSoundName
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            
+        }
+
+    }
+    
     
     func sunRotateOnce() {
         self.currentWeather = "sunny"
@@ -330,6 +382,21 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
             })
         }
         
+        //Welcome Message
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if (defaults.objectForKey("first") == nil) {
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+                
+                defaults.setObject("x", forKey: "first")
+                NSLog("First Time")
+                let alert = UIAlertView()
+                alert.title = "Welcome to Raincoat"
+                alert.message = "To get started, click the Settings button to set your Raincoat alarm."
+                alert.addButtonWithTitle("OK")
+                alert.show()
+            }
+        }
         
     }
 }

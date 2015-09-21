@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		202FECD51BA7B49C0017B40B /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 202FECD41BA7B49C0017B40B /* delete@2x.png */; };
 		20B92C6C1BABBEC600C69436 /* raincoatlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B92C6B1BABBEC600C69436 /* raincoatlogo@2x.png */; };
+		20B92C6E1BACAFA400C69436 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B92C6D1BACAFA400C69436 /* DateExtension.swift */; };
 		20CCAC6B1B3288F900490B69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC6A1B3288F900490B69 /* AppDelegate.swift */; };
 		20CCAC6D1B3288F900490B69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC6C1B3288F900490B69 /* ViewController.swift */; };
 		20CCAC701B3288F900490B69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20CCAC6E1B3288F900490B69 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		202FECD41BA7B49C0017B40B /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
 		20B92C6B1BABBEC600C69436 /* raincoatlogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "raincoatlogo@2x.png"; sourceTree = "<group>"; };
+		20B92C6D1BACAFA400C69436 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		20CCAC651B3288F900490B69 /* Raincoat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Raincoat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CCAC691B3288F900490B69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CCAC6A1B3288F900490B69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				20CCACAA1B365F4100490B69 /* CoreLocation.swift */,
 				20CCAC8A1B328C8400490B69 /* WeatherJSONRequester.swift */,
 				20CCAC961B32B96A00490B69 /* ColorPalette.swift */,
+				20B92C6D1BACAFA400C69436 /* DateExtension.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				20CCAC6D1B3288F900490B69 /* ViewController.swift in Sources */,
 				20CCAC6B1B3288F900490B69 /* AppDelegate.swift in Sources */,
 				20CCAC911B328FE200490B69 /* Sun.swift in Sources */,
+				20B92C6E1BACAFA400C69436 /* DateExtension.swift in Sources */,
 				20CCAC8B1B328C8400490B69 /* WeatherJSONRequester.swift in Sources */,
 				20CCAC951B32A64B00490B69 /* HourlyCondition.swift in Sources */,
 				20CCAC931B3298F000490B69 /* TodaysConditions.swift in Sources */,
