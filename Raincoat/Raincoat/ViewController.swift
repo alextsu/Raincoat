@@ -32,7 +32,6 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
     var currentTemp : Int = 0
     
     //Chance of precipitation, above which the app will consider it raining
-    var popThreshold : Int = 25
     var currentWeather : String!
     
     var settingsView:UIView!
@@ -100,6 +99,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
         self.navigationItem.rightBarButtonItem?.tintColor = raincoatYellow
         self.navigationItem.leftBarButtonItem?.tintColor = raincoatYellow
         
+        self.navigationItem.setLeftBarButtonItem(nil, animated: true)
     }
     
     
@@ -215,7 +215,19 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
             self.settingsView.alpha = 0.0
         }, completion: { finished in
             println("Moved!")
-            UIView.animateWithDuration(1, animations: {self.tempBackgroundScreen.alpha = 0.0}, completion: { finished in })
+            UIView.animateWithDuration(1, animations: {self.tempBackgroundScreen.alpha = 0.0}, completion: { finished in
+            
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+
+                    let alert = UIAlertView()
+                    alert.title = "Alarm Saved"
+                    alert.message = "Please keep Raincoat running in the background if you wish to receive subsequent rain alarms."
+                    alert.addButtonWithTitle("OK")
+                    alert.show()
+                }
+
+            
+            })
             self.navigationController?.navigationBar.alpha = 1
         })
         
@@ -304,7 +316,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
     
     func willRainToday(conditions: [HourlyCondition]) -> Bool {
         for hour in conditions {
-            if hour.pop > self.popThreshold {
+            if hour.pop > popThreshold {
                 return true
             }
         }
@@ -332,7 +344,7 @@ class ViewController: UIViewController, LoadWeatherDataDelegate {
             weatherDetailsLabel.text = "Currently " + String(self.currentTemp) + "F. " + self.todaysConditions.forecastText
             
             //Bring it label
-            if willRainToday(self.hourlyConditions!) == true  {
+            if willRainToday(self.hourlyConditions!) == true {
                 bringItLabel.text = "Yup. Grab a raincoat!"
                 
                 self.view.backgroundColor = raincoatNavy

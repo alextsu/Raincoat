@@ -45,6 +45,11 @@ class CoreLocation: NSObject, CLLocationManagerDelegate {
             break
             
         case .Denied:
+            let alert = UIAlertView()
+            alert.title = "Location Error"
+            alert.message = "Raincoat cannot determine your location. Please check that your Location Services are turned on and that you've given Raincoat permission to use your location."
+            alert.addButtonWithTitle("OK")
+            alert.show()
             println(".Denied")
             break
             

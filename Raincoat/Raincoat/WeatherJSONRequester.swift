@@ -11,6 +11,7 @@ import UIKit
 let weatherJSONRequester = WeatherJSONRequester()
 let wundergroundAPIKey = "c67345f20e4bd1a5";
 
+let popThreshold : Int = 25
 
 public class WeatherJSONRequester: NSObject {
     

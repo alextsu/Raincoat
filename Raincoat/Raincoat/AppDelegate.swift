@@ -59,8 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("\nBackground")
         
         
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        
         var alarmTime = NSUserDefaults.standardUserDefaults().objectForKey("AlarmTime") as! NSDate
         
         var alarmSetting : Int = NSUserDefaults.standardUserDefaults().integerForKey("AlarmSetting")
@@ -92,15 +90,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             NSLog("Alarm is %d Minutes Away", newDate.minutesFrom(currentDate)  )
             
-            if(newDate.minutesFrom(currentDate) < 60) {
+            if(newDate.minutesFrom(currentDate) < 200) {
                 
+                UIApplication.sharedApplication().cancelAllLocalNotifications()
                 
                 var hourly : [HourlyCondition] = weatherJSONRequester.getHourlyConditions()!
                 var willRain : Bool
                 
                 willRain = false
                 for hour in hourly {
-                    if hour.pop > 25 {
+                    if hour.pop > popThreshold {
                         willRain = true
                     }
                 }
@@ -108,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NSLog("Background: Will it rain? %@", willRain.description)
                 
                 if(willRain == true) {
-                    notificationText = "Yes. It's going to rain today in " + city + "."
+                    notificationText = "Yup. It's going to rain today in " + city + ". Grab a raincoat!"
                 }
                 else {
                     notificationText = "Nope. No rain today in " + city + "."
