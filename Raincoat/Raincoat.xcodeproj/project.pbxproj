@@ -10,6 +10,7 @@
 		202FECD51BA7B49C0017B40B /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 202FECD41BA7B49C0017B40B /* delete@2x.png */; };
 		20B92C6C1BABBEC600C69436 /* raincoatlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B92C6B1BABBEC600C69436 /* raincoatlogo@2x.png */; };
 		20B92C6E1BACAFA400C69436 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B92C6D1BACAFA400C69436 /* DateExtension.swift */; };
+		20B92C701BBB81DE00C69436 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 20B92C6F1BBB81DE00C69436 /* Settings.bundle */; };
 		20CCAC6B1B3288F900490B69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC6A1B3288F900490B69 /* AppDelegate.swift */; };
 		20CCAC6D1B3288F900490B69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCAC6C1B3288F900490B69 /* ViewController.swift */; };
 		20CCAC701B3288F900490B69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20CCAC6E1B3288F900490B69 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		202FECD41BA7B49C0017B40B /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
 		20B92C6B1BABBEC600C69436 /* raincoatlogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "raincoatlogo@2x.png"; sourceTree = "<group>"; };
 		20B92C6D1BACAFA400C69436 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		20B92C6F1BBB81DE00C69436 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		20CCAC651B3288F900490B69 /* Raincoat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Raincoat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CCAC691B3288F900490B69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CCAC6A1B3288F900490B69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		20CCAC5C1B3288F900490B69 = {
 			isa = PBXGroup;
 			children = (
+				20B92C6F1BBB81DE00C69436 /* Settings.bundle */,
 				20CCAC671B3288F900490B69 /* Raincoat */,
 				20CCAC7D1B3288F900490B69 /* RaincoatTests */,
 				20CCAC661B3288F900490B69 /* Products */,
@@ -290,6 +293,7 @@
 				20CCAC701B3288F900490B69 /* Main.storyboard in Resources */,
 				20CCACAF1B3693BA00490B69 /* cloudBack@2x.png in Resources */,
 				20CCAC9E1B35620800490B69 /* settings@2x.png in Resources */,
+				20B92C701BBB81DE00C69436 /* Settings.bundle in Resources */,
 				202FECD51BA7B49C0017B40B /* delete@2x.png in Resources */,
 				20CCACA01B35626300490B69 /* restart@2x.png in Resources */,
 				20B92C6C1BABBEC600C69436 /* raincoatlogo@2x.png in Resources */,
